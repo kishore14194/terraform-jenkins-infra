@@ -1,0 +1,53 @@
+name: Run Ansible Playbook
+
+on:
+  repository_dispatch:
+    types: [terraform_completed]
+
+jobs:
+  webhook-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a message
+        run: echo "Webhook triggered successfully!"
+  # ansible:
+  #   runs-on: ubuntu-latest
+
+  #   env:
+  #     TFC_ORG: your-org-name
+  #     TFC_WORKSPACE: your-workspace-name
+  #     TFC_API_TOKEN: ${{ secrets.TFC_API_TOKEN }}
+
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v3
+
+  #   - name: Get Terraform Outputs from Terraform Cloud
+  #     id: get_outputs
+  #     run: |
+  #       echo "Fetching Terraform outputs..."
+  #       response=$(curl -s \
+  #         --header "Authorization: Bearer $TFC_API_TOKEN" \
+  #         https://app.terraform.io/api/v2/organizations/$TFC_ORG/workspaces/$TFC_WORKSPACE/current-state-version)
+
+  #       outputs_url=$(echo "$response" | jq -r '.data.attributes.hosted-state-download-url')
+
+  #       curl -s -L "$outputs_url" -o terraform.tfstate
+
+  #       export JENKINS_IP=$(jq -r '.outputs.jenkins_ip.value' terraform.tfstate)
+  #       export BUILD_NODE_IP=$(jq -r '.outputs.build_node_ip.value' terraform.tfstate)
+  #       export ANSIBLE_IP=$(jq -r '.outputs.ansible_ip.value' terraform.tfstate)
+
+  #       echo "jenkins_ip=$JENKINS_IP" >> $GITHUB_OUTPUT
+  #       echo "build_node_ip=$BUILD_NODE_IP" >> $GITHUB_OUTPUT
+  #       echo "ansible_ip=$ANSIBLE_IP" >> $GITHUB_OUTPUT
+
+  #   - name: SSH into Ansible EC2 and run playbook
+  #     uses: appleboy/ssh-action@v1.0.0
+  #     with:
+  #       host: ${{ steps.get_outputs.outputs.ansible_ip }}
+  #       username: ubuntu
+  #       key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #       script: |
+  #         cd /home/ubuntu/ansible-deploy/
+  #         ansible-playbook -i inventory.ini playbook.yml
