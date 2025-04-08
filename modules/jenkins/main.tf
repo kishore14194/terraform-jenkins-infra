@@ -57,6 +57,7 @@ resource "aws_instance" "jenkins" {
   subnet_id              = "subnet-06885600758b25fde" # Auto-selects default subnet
   vpc_security_group_ids = [data.aws_security_group.jenkins_sg.id] # Use SG ID instead of name
   associate_public_ip_address = true  # Ensures Jenkins is accessible
+  key_name               = var.aws_key
 
   tags = {
     Name = "Jenkins Master"
