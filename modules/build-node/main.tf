@@ -51,6 +51,7 @@ resource "aws_instance" "build_node" {
   subnet_id              = "subnet-06885600758b25fde" # Auto-selects default subnet
   vpc_security_group_ids = [data.aws_security_group.build_node_sg.id] # Use SG ID instead of name
   associate_public_ip_address = true  # Ensures Build Node is accessible
+  key_name               = var.aws_key
 
   tags = {
     Name = "Work Horse"

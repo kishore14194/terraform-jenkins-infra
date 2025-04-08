@@ -14,3 +14,9 @@ variable "aws_region" {
   type        = string
   default     = "ap-south-1"
 }
+
+variable "aws_key" {
+  description = "Key to use"
+  type        = string
+  default     = "demo-ec2"
+}
