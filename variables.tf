@@ -17,3 +17,10 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
+
+# Instance Type
+variable "k8_instance_type" {
+  description = "Instance type for Jenkins and build nodes"
+  type        = string
+  default     = "t2.medium"
+}

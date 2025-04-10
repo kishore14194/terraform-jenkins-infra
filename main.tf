@@ -30,3 +30,9 @@ module "ansible" {
   ami_id        = var.ami_id
   instance_type = var.instance_type
 }
+
+module "k8s" {
+  source = "./modules/k8s"  # Path to the Ansible module
+  ami_id        = var.ami_id
+  instance_type = var.k8_instance_type
+}
