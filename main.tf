@@ -25,8 +25,8 @@ module "build_node" {
   instance_type = var.instance_type
 }
 #
-module "ansible" {
-  source = "./modules/ansible"  # Path to the Ansible module
+module "sonar-nexus" {
+  source = "./modules/sonar-nexus"  # Path to the Ansible module
   ami_id        = var.ami_id
   instance_type = var.instance_type
 }

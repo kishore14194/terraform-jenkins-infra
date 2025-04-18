@@ -17,14 +17,14 @@ resource "aws_security_group" "k8s_sg" {
   }
 
 ingress {
-  from_port   = 22
-  to_port     = 22
+  from_port   = 5789
+  to_port     = 5789
   protocol    = "tcp"
-  cidr_blocks = ["49.206.112.113/32"]
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 # Kubernetes API server
-ingress {
+  ingress {
   from_port   = 6443
   to_port     = 6443
   protocol    = "tcp"
@@ -32,13 +32,25 @@ ingress {
 }
 
 # etcd ports (for intra-cluster, use if you add workers later)
-ingress {
+  ingress {
   from_port   = 2379
   to_port     = 2380
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+  ingress {
+  from_port   = 10250
+  to_port     = 10250
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   tags = {
     Name = "k8s-master"

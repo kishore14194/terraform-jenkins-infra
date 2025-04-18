@@ -8,7 +8,7 @@ output "build_node_ip" {
 }
 
 output "ansible_node_ip" {
-  value = module.ansible.ansible_node_worker_ip
+  value = module.sonar-nexus.sonar_nexus_ip
 }
 
 output "k8s_master_ip" {

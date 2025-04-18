@@ -6,7 +6,7 @@ variable "ami_id" {
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.micro"  # Change based on your requirement
+  default     = "t2.medium"  # Change based on your requirement
 }
 
 variable "aws_region" {
