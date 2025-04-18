@@ -18,5 +18,5 @@ variable "aws_region" {
 variable "aws_key" {
   description = "Key to use"
   type        = string
-  default     = "demo-ec2"
+  default     = "ec2-demo"
 }
