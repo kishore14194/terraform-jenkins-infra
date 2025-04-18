@@ -15,12 +15,12 @@ variable "ami_id" {
 variable "instance_type" {
   description = "Instance type for Jenkins and build nodes"
   type        = string
-  default     = "t3.medium"
+  default     = "t2.medium"
 }
 
 # Instance Type
 variable "k8_instance_type" {
   description = "Instance type for Jenkins and build nodes"
   type        = string
-  default     = "t3.medium"
+  default     = "t2.medium"
 }
