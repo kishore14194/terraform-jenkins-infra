@@ -63,14 +63,14 @@ data "aws_security_group" "k8s_sg" {
     name   = "group-name"
     values = ["k8s-security-group"]
   }
-  vpc_id = "vpc-0451179ac74639599"
+  vpc_id = "vpc-090db58e253f5f3fe"
 }
 
 # Ansible Node EC2 Instance
 resource "aws_instance" "k8s_master" {
   ami                    = var.ami_id  # AMI ID passed from root module
   instance_type          = var.instance_type
-  subnet_id              = "subnet-06885600758b25fde" # Auto-selects default subnet
+  subnet_id              = "subnet-03b4224218302cf12" # Auto-selects default subnet
   vpc_security_group_ids = [data.aws_security_group.k8s_sg.id] # Use SG ID instead of name
   associate_public_ip_address = true  # Ensures Ansible Node is accessible
   key_name               = var.aws_key
